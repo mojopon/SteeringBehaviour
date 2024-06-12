@@ -34,6 +34,9 @@ public class Detector : MonoBehaviour
 
     public List<int> DetectAllCollisionsWithCircleCast(Vector2 self, float circleCastSize, float circleCastRange)
     {
+        // CircleCastの邪魔にならないように自身のコライダーをオフにする
+        myCollider.enabled = false;
+
         List<int> collisionDetectedDirections = new List<int>();
         for (int i = 0; i < Directions.AllDirections.Count; i++)
         {
@@ -43,6 +46,8 @@ public class Detector : MonoBehaviour
                 collisionDetectedDirections.Add(i);
             }
         }
+
+        myCollider.enabled = true;
 
         return collisionDetectedDirections;
     }
